@@ -17,9 +17,13 @@ export const Cart = styled.a`
 
 
 export const HeaderRow = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    cursor: pointer;
+  }
 
 > div {
   display: flex;

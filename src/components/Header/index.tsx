@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 
@@ -12,9 +12,14 @@ import cart from '../../assets/carrinho.png'
 const Header = () => {
   const { termo } = useSelector((state: RootReducer) => state.filtro)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const openCart = () => {
     dispatch(open())
+  }
+
+  const goToLogin = () => {
+    navigate('/login')
   }
 
   return (
@@ -31,7 +36,7 @@ const Header = () => {
             onChange={(evento) => dispatch(alterarTermo(evento.target.value))}
           />
         </S.Search>
-          <p>Entrar</p>
+          <p onClick={goToLogin}>Entrar</p>
         <S.Cart role="button" onClick={openCart}>
           <img src={cart} alt="carrinho"/>
         </S.Cart>

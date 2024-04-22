@@ -1,50 +1,53 @@
+import { useNavigate } from 'react-router-dom'
 import * as S from './styles'
 
 const Category = () => {
+  const navigate = useNavigate()
+
+  const goToWhisky = () => {
+    navigate('/whisky')
+  }
+
+  const goToVodka = () => {
+    navigate('/vodka')
+  }
+
+  const goToGin = () => {
+    navigate('/gin')
+  }
+
+  const goToLicor = () => {
+    navigate('/licor')
+  }
+
+  const goToVinho = () => {
+    navigate('/vinho')
+  }
+
+  const goToCerveja = () => {
+    navigate('/cervejas')
+  }
+
   return (
     <S.CategoryBar>
         <S.Drinks>
-          <S.Bebidas>
+          <S.Bebidas onClick={goToWhisky}>
             Whisky
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
           </S.Bebidas>
-          <S.Bebidas>
+          <S.Bebidas onClick={goToVodka}>
             Vodka
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
           </S.Bebidas>
-          <S.Bebidas>
+          <S.Bebidas onClick={goToGin}>
             Gin
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
           </S.Bebidas>
-          <S.Bebidas>
+          <S.Bebidas onClick={goToLicor}>
             Licor
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
           </S.Bebidas>
-          <S.Bebidas>
+          <S.Bebidas onClick={goToVinho}>
             Vinho
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
           </S.Bebidas>
-          <S.Bebidas>
+          <S.Bebidas onClick={goToCerveja}>
             Cervejas
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
-            <span>asd</span>
           </S.Bebidas>
         </S.Drinks>
     </S.CategoryBar>
