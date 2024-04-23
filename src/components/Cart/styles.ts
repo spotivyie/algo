@@ -88,6 +88,7 @@ export const CartItem = styled.li`
     color: ${colors.white};
     font-weight: bold;
     font-size: 14px;
+    padding-top: 6px;
   }
 
   button {

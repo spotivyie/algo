@@ -3,8 +3,8 @@ import * as S from './styles'
 import { QuantityInput } from '../Form/QuantityInput'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import Menu from '../../types'
 import { add, open } from '../../store/reducers/cart'
+import Menu from '../../types'
 
 type Props = {
   id: number
@@ -20,7 +20,14 @@ const Cards = ({ image, name, price, bebidas }: Props) => {
   const dispatch = useDispatch()
 
   const addToCart = () => {
-    dispatch(add(bebidas))
+    setIsItemAdded(true)
+    setQuantity(1)
+    dispatch(add({
+      id: bebidas.id, quantity,
+      name: bebidas.name,
+      image: bebidas.image,
+      price: bebidas.price
+    }))
     dispatch(open())
   }
 
@@ -61,7 +68,7 @@ const Cards = ({ image, name, price, bebidas }: Props) => {
           incrementQuantity={incrementQuantity}
           decrementQuantity={decrementQuantity}
         />
-        <S.Button onClick={addToCart}>
+        <S.Button onClick={addToCart} >
           <h1>Comprar</h1>
         </S.Button>
       </S.HeaderBar>

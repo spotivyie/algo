@@ -4,7 +4,7 @@ import jack from '../../assets/jacke.jpg'
 import Menu from "../../types"
 import Products from "../Products"
 
-const bebidas: Menu[] = [
+export const bebidas: Menu[] = [
   {
     id: 1,
     name: "Jack Daniels",

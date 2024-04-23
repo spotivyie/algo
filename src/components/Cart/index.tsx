@@ -7,11 +7,14 @@ import { close, remove } from '../../store/reducers/cart'
 import * as S from './styles'
 
 import { getTotalPrice, parseToBrl } from '../../utils'
+import { QuantityInput } from '../Form/QuantityInput'
+import { decrementItemQuantityAction, incrementItemQuantityAction } from '../../store/reducers/actions'
+import Menu from '../../types'
+import { bebidas } from '../Drinks'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const navigate = useNavigate()
-
   const dispatch = useDispatch()
 
   const closeCart = () => {
@@ -27,6 +30,39 @@ const Cart = () => {
     closeCart()
   }
 
+  const drinkInCart = items.map((item) => {
+    const drinkInfo = bebidas.find((drinks) => drinks.id === item.id)
+
+    if (!drinkInfo) {
+      throw new Error('Invalid drink.')
+    }
+
+    return {
+      ...drinkInfo,
+      quantity: item.quantity,
+    }
+  })
+
+  const totalItemsPrice = drinkInCart.reduce((previousValue, currentItem) => {
+    return (previousValue += currentItem.price * currentItem.quantity)
+  }, 0)
+
+  function incrementItemQuantity(itemId: Menu['id']) {
+    dispatch(incrementItemQuantityAction(itemId))
+  }
+
+  function decrementItemQuantity(itemId: Menu['id']) {
+    dispatch(decrementItemQuantityAction(itemId))
+  }
+
+  function handleItemIncrement(itemId: number) {
+    incrementItemQuantity(itemId)
+  }
+
+  function handleItemDecrement(itemId: number) {
+    decrementItemQuantity(itemId)
+  }
+
   return (
     <S.CartContainer className={isOpen ? 'is-open' : ''}>
       <S.Overlay onClick={closeCart} />
@@ -40,6 +76,11 @@ const Cart = () => {
                   <div>
                     <h3>{item.name}</h3>
                     <span>{parseToBrl(item.price)}</span>
+                  <QuantityInput
+                        quantity={item.quantity}
+                        incrementQuantity={() => handleItemIncrement(item.id)}
+                        decrementQuantity={() => handleItemDecrement(item.id)}
+                      />
                   </div>
                   <button onClick={() => removeItem(item.id)} type="button" />
                 </S.CartItem>
@@ -47,7 +88,11 @@ const Cart = () => {
             </ul>
             <S.Quantity>{items.length} bebida(s) no carrinho</S.Quantity>
             <S.Prices>
-              Total de {parseToBrl(getTotalPrice(items))}{' '}
+              Total de
+                {new Intl.NumberFormat('pt-br', {
+                  currency: 'BRL',
+                  style: 'currency',
+                }).format(totalItemsPrice)}
             </S.Prices>
             <S.CartButton
               onClick={goToCheckout}
