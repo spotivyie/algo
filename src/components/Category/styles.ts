@@ -17,7 +17,6 @@ export const Drinks = styled.div`
 `
 
 export const Bebidas = styled.div`
-
   color: ${colors.white};
   cursor: pointer;
   text-decoration: none;

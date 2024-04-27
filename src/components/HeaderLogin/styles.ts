@@ -2,21 +2,15 @@ import styled from 'styled-components'
 import { breakpoints, colors } from '../../styles'
 
 export const HeaderBar = styled.header`
-  padding-top: 20px;
+  background-color: ${colors.black};
+  color: ${colors.white};
+  padding: 50px;
 
   h1 {
     line-height: 0;
+    color: ${colors.white};
   }
 `
-
-export const Cart = styled.a`
-  cursor: pointer;
-
-  p{
-    padding-right: 20px;
-  }
-`
-
 
 export const HeaderRow = styled.div`
   display: flex;
@@ -40,26 +34,4 @@ export const Login = styled.div`
   p{
     margin: 6px;
   }
-`
-
-export const Search = styled.form`
-  padding: 6px 20px 6px 20px;
-  border-radius: 10px;
-  border: 1px solid ${colors.lightGray};
-  display: flex;
-  cursor: pointer;
-
-  button{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
-`
-
-export const Campo = styled.input`
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  padding-right: 100px;
-
 `

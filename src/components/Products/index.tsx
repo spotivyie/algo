@@ -34,6 +34,7 @@ export const Product = ({ menu }: Props) => {
           price={bebida.price}
           image={bebida.image}
           bebidas={bebida}
+          prioridade={bebida.prioridade}
         />
       ))}
     </Carousel>

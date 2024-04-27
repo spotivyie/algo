@@ -1,15 +1,23 @@
 import styled from 'styled-components'
+import { colors } from '../../styles'
 
 export const Footer = styled.footer`
-  max-width: 1224px;
-  width: 100%;
-  margin: 0 auto;
   display: block;
-  padding: 40px;
+
+  span {
+    border: 1px solid ${colors.lightGray};
+    display: block;
+    margin-bottom: 14px;
+  }
 
   p{
     padding: 10px;
   }
+`
+export const FooterRedes = styled.div`
+  max-width: 1224px;
+  margin: 0 auto;
+
 `
 
 export const AtendimentoRede = styled.div`
@@ -21,6 +29,7 @@ export const AtendimentoRede = styled.div`
 
 export const Vindo = styled.div`
   display: block;
+  text-align: justify;
 `
 
 export const Rede = styled.div`

@@ -5,7 +5,8 @@ export const colors = {
   black: '#000',
   gray: '#333',
   green: '#10AC84',
-  lightGray: '#A3A3A3'
+  lightGray: '#dcdcdc',
+  red: '#FF000D'
 }
 
 export const breakpoints = {
@@ -25,7 +26,6 @@ export const GlobalCSS = createGlobalStyle`
   body{
     background-color: ${colors.white};
     color: ${colors.black};
-    padding-top: 20px;
   }
 
   .container{

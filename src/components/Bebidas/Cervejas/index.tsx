@@ -1,7 +1,10 @@
+import BarraLateral from "../Components/BarraLateral"
+
 const Cerveja = () => {
 
   return (
-    <></>
+    <>
+    </>
   )
 }
 

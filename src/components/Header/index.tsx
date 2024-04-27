@@ -5,6 +5,7 @@ import { RootReducer } from '../../store'
 import { alterarTermo } from '../../store/reducers/filtro'
 
 import { open } from '../../store/reducers/cart'
+import { UserCircle, MagnifyingGlass } from '@phosphor-icons/react'
 
 import * as S from './styles'
 import cart from '../../assets/carrinho.png'
@@ -23,7 +24,7 @@ const Header = () => {
   }
 
   return (
-    <S.HeaderBar>
+    <S.HeaderBar className="container">
       <S.HeaderRow>
           <Link to="/">
             <h1>LOGO</h1>
@@ -35,8 +36,16 @@ const Header = () => {
             value={termo}
             onChange={(evento) => dispatch(alterarTermo(evento.target.value))}
           />
+          <button>
+            <MagnifyingGlass size={24} />
+          </button>
         </S.Search>
-          <p onClick={goToLogin}>Entrar</p>
+          <S.Login onClick={goToLogin}>
+            <UserCircle size={24}  />
+            <p>
+              Minha Conta
+            </p>
+          </S.Login>
         <S.Cart role="button" onClick={openCart}>
           <img src={cart} alt="carrinho"/>
         </S.Cart>

@@ -15,6 +15,10 @@ type TabButtonProps = {
 
 export const Checkout = styled.div`
   margin: 60px 0px;
+
+  p{
+    color: ${colors.white};
+  }
 `
 
 export const Row = styled.div<RowProps>`
@@ -79,4 +83,9 @@ export const TabButton = styled.button<TabButtonProps>`
     margin-top: 8px;
     width: 100%;
   }
+`
+
+export const Button = styled.div`
+  background-color: ${colors.black};
+  padding: 0px 24px 40px;
 `

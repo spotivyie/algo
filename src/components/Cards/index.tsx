@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
 import Menu from '../../types'
+import * as enums from '../../utils/enums/index'
 
 type Props = {
   id: number
@@ -12,9 +13,10 @@ type Props = {
   image: string
   price: number
   bebidas: Menu
+  prioridade: enums.Prioridade
 }
 
-const Cards = ({ image, name, price, bebidas }: Props) => {
+const Cards = ({ image, name, price, bebidas, prioridade }: Props) => {
   const [quantity, setQuantity] = useState(1)
   const [isItemAdded, setIsItemAdded] = useState(false)
   const dispatch = useDispatch()
@@ -26,7 +28,7 @@ const Cards = ({ image, name, price, bebidas }: Props) => {
       id: bebidas.id, quantity,
       name: bebidas.name,
       image: bebidas.image,
-      price: bebidas.price
+      price: bebidas.price,
     }))
     dispatch(open())
   }
@@ -71,6 +73,7 @@ const Cards = ({ image, name, price, bebidas }: Props) => {
         <S.Button onClick={addToCart} >
           <h1>Comprar</h1>
         </S.Button>
+        <p>{prioridade}</p>
       </S.HeaderBar>
     </S.Card>
   )
