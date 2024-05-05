@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { breakpoints, colors } from '../../styles'
+import { colors } from '../../styles'
 
 export const HeaderBar = styled.header`
   background-color: ${colors.black};
@@ -7,12 +7,14 @@ export const HeaderBar = styled.header`
   padding: 50px;
 
   h1 {
-    line-height: 0;
     color: ${colors.white};
   }
 `
 
 export const HeaderRow = styled.div`
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,11 +22,6 @@ export const HeaderRow = styled.div`
 > div {
   display: flex;
   align-items: center;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    flex: 1;
-    justify-content: space-between;
-  }
 }
 `
 

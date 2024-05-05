@@ -6,23 +6,25 @@ import { close, remove } from '../../store/reducers/cart'
 
 import * as S from './styles'
 
-import { getTotalPrice, parseToBrl } from '../../utils'
+import { parseToBrl } from '../../utils'
 import { QuantityInput } from '../Form/QuantityInput'
-import { decrementItemQuantityAction, incrementItemQuantityAction } from '../../store/reducers/actions'
 import Menu from '../../types'
-import { bebidas } from '../Drinks'
+import { useCart } from '../../store/hooks/usecart'
+import { useState } from 'react'
+import { Trash } from 'phosphor-react'
 
-const Cart = () => {
+interface DrinkProps {
+  drink: Menu
+}
+
+const Cart = ({drink}: DrinkProps) => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [quantity, setQuantity] = useState(1);
 
   const closeCart = () => {
     dispatch(close())
-  }
-
-  const removeItem = (id: number) => {
-    dispatch(remove(id))
   }
 
   const goToCheckout = () => {
@@ -30,8 +32,18 @@ const Cart = () => {
     closeCart()
   }
 
+  const { addItem } = useCart();
+
+  function handleAddToCart() {
+    const drinkToAdd = {
+      ...drink,
+      quantity,
+    };
+    addItem(drinkToAdd);
+  }
+
   const drinkInCart = items.map((item) => {
-    const drinkInfo = bebidas.find((drinks) => drinks.id === item.id)
+    const drinkInfo = items.find((drinks) => drinks.id === item.id)
 
     if (!drinkInfo) {
       throw new Error('Invalid drink.')
@@ -47,20 +59,18 @@ const Cart = () => {
     return (previousValue += currentItem.price * currentItem.quantity)
   }, 0)
 
-  function incrementItemQuantity(itemId: Menu['id']) {
-    dispatch(incrementItemQuantityAction(itemId))
+  const removeItem = (id: number) => {
+    dispatch(remove(id))
   }
 
-  function decrementItemQuantity(itemId: Menu['id']) {
-    dispatch(decrementItemQuantityAction(itemId))
+  const { changeCartItemQuantity } = useCart();
+
+  function handleIncrease() {
+    changeCartItemQuantity(drink.id, "increase");
   }
 
-  function handleItemIncrement(itemId: number) {
-    incrementItemQuantity(itemId)
-  }
-
-  function handleItemDecrement(itemId: number) {
-    decrementItemQuantity(itemId)
+  function handleDecrease() {
+    changeCartItemQuantity(drink.id, "decrease");
   }
 
   return (
@@ -73,34 +83,44 @@ const Cart = () => {
               {items.map((item) => (
                 <S.CartItem key={item.id}>
                   <img src={item.image} alt={item.name} />
+                  <S.Input>
                   <div>
                     <h3>{item.name}</h3>
                     <span>{parseToBrl(item.price)}</span>
-                  <QuantityInput
-                        quantity={item.quantity}
-                        incrementQuantity={() => handleItemIncrement(item.id)}
-                        decrementQuantity={() => handleItemDecrement(item.id)}
-                      />
                   </div>
-                  <button onClick={() => removeItem(item.id)} type="button" />
+                  <S.QuantityItem>
+                    <QuantityInput
+                      quantity={item.quantity}
+                      incrementQuantity={handleIncrease}
+                      decrementQuantity={handleDecrease}
+                    />
+                  </S.QuantityItem>
+                  </S.Input>
+                  <S.CloseButton onClick={() => removeItem(item.id)} type="button">
+                    <Trash size={18}/>
+                  </S.CloseButton>
                 </S.CartItem>
               ))}
             </ul>
-            <S.Quantity>{items.length} bebida(s) no carrinho</S.Quantity>
-            <S.Prices>
-              Total de
-                {new Intl.NumberFormat('pt-br', {
-                  currency: 'BRL',
-                  style: 'currency',
-                }).format(totalItemsPrice)}
-            </S.Prices>
-            <S.CartButton
-              onClick={goToCheckout}
-              title="Clique aqui para continuar com a compra"
-              type="button"
-              >
-                Continuar compra
-            </S.CartButton>
+            <S.CartShop>
+              <S.Quantity>{items.length} bebida(s) no carrinho</S.Quantity>
+              <S.Prices>
+                Total de <span></span>
+                  {new Intl.NumberFormat('pt-br', {
+                    currency: 'BRL',
+                    style: 'currency',
+                  }).format(totalItemsPrice)}
+              </S.Prices>
+              <S.CartButton
+                onClick={goToCheckout}
+                title="Clique aqui para continuar com a compra"
+                type="button"
+                >
+                <div onClick={handleAddToCart}>
+                  Continuar compra
+                </div>
+              </S.CartButton>
+            </S.CartShop>
           </>
         ) : (
           <p className="empty-text">

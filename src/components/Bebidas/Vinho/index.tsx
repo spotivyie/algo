@@ -8,11 +8,11 @@ import * as S from './styles'
 import ListaDeBebidas from "../Components/ListaDeBebidas"
 import Menu from "../../../types"
 
-const Cervejas = () => {
+const Vinho = () => {
   const [bebidas, setBebidas] = useState<Menu[]>([])
 
   useEffect(() => {
-    fetch('https://api-phi-one-85.vercel.app/cervejas')
+    fetch('https://api-phi-one-85.vercel.app/vinho')
     .then((res) => res.json())
     .then((res) => setBebidas(res))
   }, [])
@@ -21,12 +21,12 @@ const Cervejas = () => {
     <>
       <Header />
       <Category />
-        <S.Cerveja>
+        <S.Vinho>
           <ListaDeBebidas menu={bebidas} />
-        </S.Cerveja>
+        </S.Vinho>
       <Footer />
     </>
   )
 }
 
-export default Cervejas
+export default Vinho

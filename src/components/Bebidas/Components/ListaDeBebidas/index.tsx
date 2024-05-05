@@ -1,56 +1,28 @@
-import { useSelector } from 'react-redux'
+import { Container } from "./styles"
+import Cards from "../../../Cards"
+import Menu from "../../../../types"
 
-import { MainContainer, Tag } from './styles'
-import { RootReducer } from '../../../../store'
-import Cards from '../../../Cards'
+export type Props = {
+  menu: Menu[]
+}
 
-import TarefaClass from '../../../../../src/types'
+export const ListaDeBebidas = ({ menu }: Props) => {
 
-
-const ListaDeBebidas = () => {
-  const { itens } = useSelector((state: RootReducer) => state.tarefas)
-  const { termo, criterio, valor } = useSelector(
-    (state: RootReducer) => state.filtro
-  )
-
-  const filtraTarefas = () => {
-    let tarefasFiltradas = itens
-    if (termo !== undefined) {
-      tarefasFiltradas = tarefasFiltradas.filter(
-        (item) => item.name.toLowerCase().search(termo.toLowerCase()) >= 0
-      )
-
-      if (criterio === 'prioridade') {
-        tarefasFiltradas = tarefasFiltradas.filter(
-          (item) => item.prioridade === valor
-        )
-      }
-      return tarefasFiltradas
-      } else {
-      return itens
-    }
-  }
-
-  const tarefas = filtraTarefas()
-
-  return (
-    <MainContainer>
-      <ul>
-        {tarefas.map((bebida) => (
-          <li key={bebida.name}>
-            <Cards
-              id={bebida.id}
-              name={bebida.name}
-              image={bebida.image}
-              price={bebida.price}
-              bebidas={bebida}
-              prioridade={bebida.prioridade}
-            />
-          </li>
-        ))}
-      </ul>
-    </MainContainer>
-  )
+  return(
+  <Container>
+      {menu.map((bebida) => (
+        <Cards
+          key={bebida.id}
+          id={bebida.id}
+          name={bebida.name}
+          price={bebida.price}
+          image={bebida.image}
+          bebidas={bebida}
+          prioridade={bebida.prioridade}
+        />
+      ))}
+  </Container>
+)
 }
 
 export default ListaDeBebidas

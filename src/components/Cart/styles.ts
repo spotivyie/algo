@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../styles'
 
-import closeIcon from '../../assets/close.png'
-
 export const Overlay = styled.div`
   position: absolute;
   top: 0;
@@ -29,7 +27,7 @@ export const CartContainer = styled.div`
 `
 
 export const Sidebar = styled.aside`
-  background-color: ${colors.gray};
+  background-color: ${colors.basecard};
   z-index: 1;
   padding: 40px 16px 0 16px;
   max-width: 360px;
@@ -38,7 +36,7 @@ export const Sidebar = styled.aside`
   .empty-text {
     font-size: 14px;
     line-height: 22px;
-    color: ${colors.white};
+    color: ${colors.black};
     text-align: center;
   }
 `
@@ -46,66 +44,74 @@ export const Sidebar = styled.aside`
 export const Prices = styled.p`
   font-weight: bold;
   font-size: 14px;
-  color: ${colors.white};
+  color: ${colors.black};
   margin-bottom: 24px;
-
-  span {
-    display: block;
-    font-size: 12px;
-    color: ${colors.lightGray};
-  }
 `
 
 export const Quantity = styled.p`
   font-weight: bold;
   font-size: 16px;
-  color: ${colors.white};
+  color: ${colors.black};
   margin-top: 32px;
   margin-bottom: 16px;
 `
 
+export const Input = styled.div`
+  display: block;
+  align-items: center;
+`
+
+export const CartShop = styled.div`
+  display: block;
+  position: absolute;
+  bottom: 40px;
+`
+
 export const CartItem = styled.li`
   display: flex;
-  border-bottom: 1px solid ${colors.lightGray};
+  border-bottom: 1px solid ${colors.black};
   padding: 8px 0;
   position: relative;
 
   img {
-    height: 80px;
+    height: 100px;
     width: 80px;
     object-fit: cover;
     margin-right: 24px;
   }
 
   h3 {
-    color: ${colors.white};
+    color: ${colors.black};
     font-weight: bold;
     font-size: 16px;
+    padding-right: 24px;
   }
 
   span {
     display: block;
-    color: ${colors.white};
+    color: ${colors.black};
     font-weight: bold;
     font-size: 14px;
-    padding-top: 6px;
-  }
-
-  button {
-    background-image: url(${closeIcon});
-    width: 16px;
-    height: 16px;
-    border: none;
-    background-color: transparent;
-    position: absolute;
-    top: 8px;
-    right: 0;
+    padding-top: 8px;
   }
 `
 
+export const CloseButton = styled.button`
+  width: 16px;
+  height: 16px;
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: 0;
+`
+
+export const QuantityItem = styled.div`
+  padding-top: 20px;
+`
+
 export const CartButton  = styled.button`
-  background-color: ${colors.green};
-  border: 1px solid ${colors.green};
+  background-color: ${colors.black};
+  border: 1px solid ${colors.black};
   color: ${colors.white};
   font-weight: bold;
   padding: 8px;

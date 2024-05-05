@@ -1,3 +1,5 @@
+import Menu from "../types"
+
 export const parseToBrl = (amount = 0) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -5,7 +7,7 @@ export const parseToBrl = (amount = 0) => {
   }).format(amount)
 }
 
-export const getTotalPrice = (items: Bebidas[]) => {
+export const getTotalPrice = (items: Menu[]) => {
   return items.reduce((accumulator, currentItem) => {
     if (currentItem.price) {
       return (accumulator += currentItem.price)

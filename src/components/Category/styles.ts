@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const CategoryBar = styled.section`
   margin: 20px 0px;
@@ -14,10 +14,18 @@ export const Drinks = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: ${breakpoints.phone}) {
+    justify-content: center;
+  }
 `
 
 export const Bebidas = styled.div`
   color: ${colors.white};
   cursor: pointer;
   text-decoration: none;
+
+  @media (max-width: ${breakpoints.phone}) {
+    padding: 8px;
+  }
 `

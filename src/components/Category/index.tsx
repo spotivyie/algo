@@ -30,26 +30,26 @@ const Category = () => {
 
   return (
     <S.CategoryBar>
-        <S.Drinks>
-          <S.Bebidas onClick={goToWhisky}>
-            Whisky
-          </S.Bebidas>
-          <S.Bebidas onClick={goToVodka}>
-            Vodka
-          </S.Bebidas>
-          <S.Bebidas onClick={goToGin}>
-            Gin
-          </S.Bebidas>
-          <S.Bebidas onClick={goToLicor}>
-            Licor
-          </S.Bebidas>
-          <S.Bebidas onClick={goToVinho}>
-            Vinho
-          </S.Bebidas>
-          <S.Bebidas onClick={goToCerveja}>
-            Cervejas
-          </S.Bebidas>
-        </S.Drinks>
+      <S.Drinks>
+        <S.Bebidas onClick={goToWhisky}>
+          Whisky
+        </S.Bebidas>
+        <S.Bebidas onClick={goToVodka}>
+          Vodka
+        </S.Bebidas>
+        <S.Bebidas onClick={goToGin}>
+          Gin
+        </S.Bebidas>
+        <S.Bebidas onClick={goToLicor}>
+          Licor
+        </S.Bebidas>
+        <S.Bebidas onClick={goToVinho}>
+          Vinho
+        </S.Bebidas>
+        <S.Bebidas onClick={goToCerveja}>
+          Cervejas
+        </S.Bebidas>
+      </S.Drinks>
     </S.CategoryBar>
   )
 }

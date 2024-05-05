@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Whisky = styled.div`
+export const Vinho = styled.div`
     max-width: 1024px;
     margin: 0 auto;
     padding-top: 40px;

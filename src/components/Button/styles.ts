@@ -7,10 +7,10 @@ import { Props } from '.'
 
 export const ButtonContainer = styled.button<Props>`
   border: 2px solid
-    ${(props) => (props.variant === 'primary' ? colors.green : colors.white)};
+    ${(props) => (props.variant === 'primary' ? colors.black : colors.white)};
   color: ${colors.white};
   background-color: ${(props) =>
-    props.variant === 'primary' ? colors.green : 'transparent'};
+    props.variant === 'primary' ? colors.black : 'transparent'};
   font-size: 16px;
   font-weight: bold;
   padding: 8px 16px;
@@ -19,8 +19,8 @@ export const ButtonContainer = styled.button<Props>`
 `
 
 export const ButtonLink = styled(Link)`
-  border: 2px solid ${colors.white};
-  color: ${colors.white};
+  border: 2px solid ${colors.black};
+  color: ${colors.black};
   background-color: transparent;
   font-size: 16px;
   font-weight: bold;

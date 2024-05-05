@@ -1,17 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
-
-import { alterarTermo } from '../../store/reducers/filtro'
+import { useDispatch } from 'react-redux'
 
 import { open } from '../../store/reducers/cart'
-import { UserCircle, MagnifyingGlass } from '@phosphor-icons/react'
+import { UserCircle } from '@phosphor-icons/react'
 
 import * as S from './styles'
 import cart from '../../assets/carrinho.png'
 
 const Header = () => {
-  const { termo } = useSelector((state: RootReducer) => state.filtro)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -26,20 +22,10 @@ const Header = () => {
   return (
     <S.HeaderBar className="container">
       <S.HeaderRow>
-          <Link to="/">
+          <Link to="/" className="link">
             <h1>LOGO</h1>
           </Link>
         <S.Search>
-          <S.Campo
-            type="text"
-            placeholder="Buscar"
-            value={termo}
-            onChange={(evento) => dispatch(alterarTermo(evento.target.value))}
-          />
-          <button>
-            <MagnifyingGlass size={24} />
-          </button>
-        </S.Search>
           <S.Login onClick={goToLogin}>
             <UserCircle size={24}  />
             <p>
@@ -49,6 +35,7 @@ const Header = () => {
         <S.Cart role="button" onClick={openCart}>
           <img src={cart} alt="carrinho"/>
         </S.Cart>
+        </S.Search>
       </S.HeaderRow>
     </S.HeaderBar>
   )

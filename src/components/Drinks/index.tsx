@@ -1,55 +1,18 @@
 import * as S from './styles'
-import jack from '../../assets/jacke.jpg'
 
 import Menu from "../../types"
 import Products from "../Products"
-
-export const bebidas: Menu[] = [
-  {
-    id: 1,
-    name: "Jack Daniels",
-    image: jack,
-    price: 140.00
-  },
-  {
-    id: 2,
-    name: "Jack Daniels",
-    image: jack,
-    price: 140.00
-  },
-  {
-    id: 3,
-    name: "Jack Daniels",
-    image: jack,
-    price: 140.00
-  },
-  {
-    id: 4,
-    name: "Jack Daniels",
-    image: jack,
-    price: 140.00
-  },
-  {
-    id: 5,
-    name: "Jack Daniels",
-    image: jack,
-    price: 140.00
-  },
-  {
-    id: 6,
-    name: "Jack Daniels",
-    image: jack,
-    price: 140.00
-  },
-  {
-    id: 7,
-    name: "Jack Daniels",
-    image: jack,
-    price: 140.00
-  }
-]
+import { useEffect, useState } from 'react'
 
 const Drinks = () => {
+  const [bebidas, setBebidas] = useState<Menu[]>([])
+
+  useEffect(() => {
+    fetch('https://api-phi-one-85.vercel.app/whisky')
+    .then((res) => res.json())
+    .then((res) => setBebidas(res))
+  }, [])
+
   return (
     <S.CategoryBar>
       <Products menu={bebidas} />

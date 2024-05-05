@@ -1,11 +1,12 @@
 import * as S from './styles'
+import { Eye, EyeSlash } from '@phosphor-icons/react'
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import InputMask from 'react-input-mask'
 
-import { Eye, EyeSlash } from '@phosphor-icons/react'
 import HeaderLogin from '../../components/HeaderLogin'
 import FooterLogin from '../../components/FooterLogin'
 
@@ -24,6 +25,7 @@ const loginFormValidationSchema = zod.object({
   message: "A senha não corresponde",
   path: ["confirm_password"]
 })
+
 
 type NewLoginFormData = zod.infer<typeof loginFormValidationSchema>
 
@@ -82,36 +84,30 @@ const Cadastro = () => {
               </S.FormCadastro>
               <S.FormCadastro>
                 <label htmlFor="cpf">CPF</label>
-                <input
-                  type="cpf"
-                  id="cpf"
-                  {...register('cpf', { valueAsNumber: true })}
-                />
-                { errors.cpf  && (
-                  <span > {errors.cpf?.message} </span>)
-                }
+                <InputMask
+                    id="cpf"
+                    type="text"
+                    name="cpf"
+                    mask="999.999.999-99"
+                  />
               </S.FormCadastro>
               <S.FormCadastro>
-                <label htmlFor="number">Numero de Telefone</label>
-                <input
-                  type="tel"
-                  id="number"
-                  {...register('number', { valueAsNumber: true })}
-                />
-                { errors.number  && (
-                  <span > {errors.number?.message} </span>)
-                }
+                <label htmlFor="number">Número de Telefone</label>
+                <InputMask
+                    id="number"
+                    type="tel"
+                    name="number"
+                    mask="(99) 9999-9999"
+                  />
               </S.FormCadastro>
               <S.FormCadastro>
                 <label htmlFor="nasc">Data de Nascimento</label>
-                <input
-                  type="date"
-                  id="nasc"
-                  {...register('nasc', { valueAsNumber: true })}
-                />
-                { errors.nasc  && (
-                  <span > {errors.nasc?.message} </span>)
-                }
+                <InputMask
+                    id="nasc"
+                    type="text"
+                    name="nasc"
+                    mask="99/99/9999"
+                  />
               </S.FormCadastro>
               <S.FormCadastro>
                 <label htmlFor="email">E-mail</label>
@@ -185,3 +181,40 @@ const Cadastro = () => {
 }
 
 export default Cadastro
+
+
+// const [purchase, { }] = usePurchaseMutation()
+// const form = useFormik({
+//   initialValues: {
+//     number: '',
+//     nasc: '',
+//     cpf: '',
+//   },
+//   validationSchema: Yup.object({
+//     cpf: Yup.string()
+//     .min(14, 'O campo precisa ter 14 caracteres')
+//     .max(15, 'O campo precisa ter 14 caracteres')
+//     .required('O campo é obrigatório'),
+//     number: Yup.string()
+//       .required('O campo é obrigatório'),
+//     nasc: Yup.string()
+//       .required('O campo é obrigatório')
+//   }),
+//   onSubmit: (values) => {
+//     purchase({
+//       cadastro: {
+//         cpf: values.cpf,
+//         number: values.number,
+//         nasc: values.nasc
+//       }
+//     })
+//   }
+// })
+
+// const checkInputHasError = (fieldName: string) => {
+//   const isTouched = fieldName in form.touched
+//   const isInvalid = fieldName in form.errors
+//   const hasError = isTouched && isInvalid
+
+//   return hasError
+// }

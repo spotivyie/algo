@@ -1,33 +1,48 @@
 /* eslint-disable no-unused-vars */
 
+import { NavigateFunction } from "react-router-dom"
+import { OrderInfo } from "../../pages/Checkout"
+import Menu from "../../types"
+
 export interface Item {
-  id: number
+  id: string
   quantity: number
 }
 
+
 export enum ActionTypes {
   ADD_ITEM = 'ADD_ITEM',
+  REMOVE_ITEM = 'REMOVE_ITEM',
   INCREMENT_ITEM_QUANTITY = 'INCREMENT_ITEM_QUANTITY',
   DECREMENT_ITEM_QUANTITY = 'DECREMENT_ITEM_QUANTITY',
+  CHECKOUT_CART = 'CHECKOUT_CART',
 }
 
 export type Actions =
   | {
       type: ActionTypes.ADD_ITEM
       payload: {
-        item: Item
+        item: Menu
       }
     }
   | {
       type:
         | ActionTypes.DECREMENT_ITEM_QUANTITY
         | ActionTypes.INCREMENT_ITEM_QUANTITY
+        | ActionTypes.REMOVE_ITEM
       payload: {
-        itemId: Item['id']
+        itemId: Menu['id']
+      }
+    }
+  | {
+      type: ActionTypes.CHECKOUT_CART
+      payload: {
+        order: OrderInfo
+        callback: NavigateFunction
       }
     }
 
-export function addItemAction(item: Item) {
+export function addItemAction(item: Menu) {
   return {
     type: ActionTypes.ADD_ITEM,
     payload: {
@@ -36,7 +51,16 @@ export function addItemAction(item: Item) {
   } satisfies Actions
 }
 
-export function incrementItemQuantityAction(itemId: Item['id']) {
+export function removeItemAction(itemId: Menu['id']) {
+  return {
+    type: ActionTypes.REMOVE_ITEM,
+    payload: {
+      itemId,
+    },
+  } satisfies Actions
+}
+
+export function incrementItemQuantityAction(itemId: Menu['id']) {
   return {
     type: ActionTypes.INCREMENT_ITEM_QUANTITY,
     payload: {
@@ -45,11 +69,24 @@ export function incrementItemQuantityAction(itemId: Item['id']) {
   } satisfies Actions
 }
 
-export function decrementItemQuantityAction(itemId: Item['id']) {
+export function decrementItemQuantityAction(itemId: Menu['id']) {
   return {
     type: ActionTypes.DECREMENT_ITEM_QUANTITY,
     payload: {
       itemId,
+    },
+  } satisfies Actions
+}
+
+export function checkoutCartAction(
+  order: OrderInfo,
+  callback: NavigateFunction,
+) {
+  return {
+    type: ActionTypes.CHECKOUT_CART,
+    payload: {
+      order,
+      callback,
     },
   } satisfies Actions
 }

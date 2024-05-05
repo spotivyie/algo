@@ -10,22 +10,22 @@ import Gin from './components/Bebidas/Gin'
 import Licor from './components/Bebidas/Licor'
 import Vodka from './components/Bebidas/Vodka'
 import Whisky from './components/Bebidas/Whisky'
-// import Categories from './pages/Categories'
-// import Product from './pages/Product'
+import Vinho from './components/Bebidas/Vinho'
+import Payment from './pages/Payment'
 
 const Rotas = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    {/* <Route path="/categories" element={<Categories />} />
-    <Route path="/product/:id" element={<Product />} /> */}
     <Route path="/checkout" element={<Checkout />} />
     <Route path="/login" element={<Login />} />
     <Route path="/cadastro" element={<Cadastro />} />
+    <Route path="/payment" element={<Payment />} />
 
     <Route path="/cervejas" element={<Cervejas />} />
     <Route path="/gin" element={<Gin />} />
     <Route path="/licor" element={<Licor />} />
     <Route path="/vodka" element={<Vodka />} />
+    <Route path="/vinho" element={<Vinho />} />
     <Route path="/whisky" element={<Whisky />} />
   </Routes>
 )

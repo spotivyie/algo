@@ -5,18 +5,18 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
 import Menu from '../../types'
-import * as enums from '../../utils/enums/index'
+import { parseToBrl } from '../../utils'
+import { useCart } from '../../store/hooks/usecart'
 
 type Props = {
-  id: number
+  id: string
   name: string
   image: string
   price: number
   bebidas: Menu
-  prioridade: enums.Prioridade
 }
 
-const Cards = ({ image, name, price, bebidas, prioridade }: Props) => {
+const Cards = ({ image, name, price, bebidas }: Props) => {
   const [quantity, setQuantity] = useState(1)
   const [isItemAdded, setIsItemAdded] = useState(false)
   const dispatch = useDispatch()
@@ -25,10 +25,11 @@ const Cards = ({ image, name, price, bebidas, prioridade }: Props) => {
     setIsItemAdded(true)
     setQuantity(1)
     dispatch(add({
-      id: bebidas.id, quantity,
+      id: bebidas.id,
       name: bebidas.name,
       image: bebidas.image,
       price: bebidas.price,
+      quantity
     }))
     dispatch(open())
   }
@@ -59,11 +60,21 @@ const Cards = ({ image, name, price, bebidas, prioridade }: Props) => {
     }
   }, [isItemAdded])
 
+  const { addDrinkToCart } = useCart();
+
+  function handleAddToCart() {
+    const drinkToAdd = {
+      ...bebidas,
+      quantity,
+    };
+    addDrinkToCart(drinkToAdd);
+  }
+
   return (
     <S.Card>
       <img src={image} alt={name} />
       <S.Tag>{name}</S.Tag>
-      <S.Descricao>{price}</S.Descricao>
+      <S.Descricao>{parseToBrl(price)}</S.Descricao>
       <S.HeaderBar>
         <QuantityInput
           quantity={quantity}
@@ -71,9 +82,8 @@ const Cards = ({ image, name, price, bebidas, prioridade }: Props) => {
           decrementQuantity={decrementQuantity}
         />
         <S.Button onClick={addToCart} >
-          <h1>Comprar</h1>
+          <h1 onClick={handleAddToCart}>Comprar</h1>
         </S.Button>
-        <p>{prioridade}</p>
       </S.HeaderBar>
     </S.Card>
   )

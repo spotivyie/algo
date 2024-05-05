@@ -4,11 +4,9 @@ import { store } from './store'
 
 import { GlobalCSS } from './styles'
 
-import Header from "./components/Header"
-import Footer from './components/Footer'
 import Cart from './components/Cart'
 import Rotas from './routes'
-import Category from './components/Category'
+import { CartContextProvider } from './store/context/CartProvider'
 
 function App() {
   return (
@@ -17,7 +15,9 @@ function App() {
         <GlobalCSS />
         <div className="container">
         </div>
-        <Rotas />
+        <CartContextProvider>
+          <Rotas />
+        </CartContextProvider>
         <Cart />
       </BrowserRouter>
     </Provider>

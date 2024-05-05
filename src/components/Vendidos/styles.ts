@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const VendidosBar = styled.section`
   padding: 20px 100px 80px 100px;
@@ -13,6 +13,14 @@ export const VendidosBar = styled.section`
 
   div{
     border-radius: 6px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}){
+    padding: 20px 10px 80px 10px;
+  }
+
+  @media (max-width: ${breakpoints.phone}){
+    padding: 20px 10px 80px 10px;
   }
 `
 

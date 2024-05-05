@@ -12,16 +12,16 @@ const HeaderLogin = () => {
 
   return (
     <S.HeaderBar>
-      <S.HeaderRow className="container">
-          <Link to="/">
-            <h1>LOGO</h1>
-          </Link>
-          <S.Login onClick={goToLogin}>
-            <UserCircle size={24}  />
-            <p>
-              Minha Conta
-            </p>
-          </S.Login>
+      <S.HeaderRow>
+        <Link to="/" className="link">
+          <h1>LOGO</h1>
+        </Link>
+        <S.Login onClick={goToLogin}>
+          <UserCircle size={24}  />
+          <p>
+            Minha Conta
+          </p>
+        </S.Login>
       </S.HeaderRow>
     </S.HeaderBar>
   )

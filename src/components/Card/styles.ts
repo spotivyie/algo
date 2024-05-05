@@ -2,14 +2,14 @@ import styled from 'styled-components'
 import { colors } from '../../styles'
 
 export const Container = styled.div`
-  background-color: ${colors.black};
+  background-color: ${colors.basecard};
   padding: 40px 24px;
 
   h2,
   h3 {
     font-size: 18px;
     font-weight: bold;
-    color: ${colors.white};
+    color: ${colors.black};
     margin-bottom: 24px;
   }
 
